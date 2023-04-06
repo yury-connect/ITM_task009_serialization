@@ -4,6 +4,17 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/10 Сериализация/10 Сериализация.iml" filepath="$PROJECT_DIR$/10 Сериализация/10 Сериализация.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/serialization.iml" filepath="$PROJECT_DIR$/.idea/serialization.iml" />
+      <module fileurl="file://$PROJECT_DIR$/10 Сериализация/task2001/task2001.iml" filepath="$PROJECT_DIR$/10 Сериализация/task2001/task2001.iml" />
+      <module fileurl="file://$PROJECT_DIR$/10 Сериализация/task2003(properties)/task2003(properties).iml" filepath="$PROJECT_DIR$/10 Сериализация/task2003(properties)/task2003(properties).iml" />
+      <module fileurl="file://$PROJECT_DIR$/10 Сериализация/task2005/task2005.iml" filepath="$PROJECT_DIR$/10 Сериализация/task2005/task2005.iml" />
+      <module fileurl="file://$PROJECT_DIR$/10 Сериализация/task2006/task2006.iml" filepath="$PROJECT_DIR$/10 Сериализация/task2006/task2006.iml" />
+      <module fileurl="file://$PROJECT_DIR$/10 Сериализация/task2009/task2009.iml" filepath="$PROJECT_DIR$/10 Сериализация/task2009/task2009.iml" />
+      <module fileurl="file://$PROJECT_DIR$/10 Сериализация/task2011/task2011.iml" filepath="$PROJECT_DIR$/10 Сериализация/task2011/task2011.iml" />
+      <module fileurl="file://$PROJECT_DIR$/10 Сериализация/task2016/task2016.iml" filepath="$PROJECT_DIR$/10 Сериализация/task2016/task2016.iml" />
+      <module fileurl="file://$PROJECT_DIR$/10 Сериализация/task2017/task2017.iml" filepath="$PROJECT_DIR$/10 Сериализация/task2017/task2017.iml" />
+      <module fileurl="file://$PROJECT_DIR$/10 Сериализация/task2018/task2018.iml" filepath="$PROJECT_DIR$/10 Сериализация/task2018/task2018.iml" />
+      <module fileurl="file://$PROJECT_DIR$/10 Сериализация/task2019/task2019.iml" filepath="$PROJECT_DIR$/10 Сериализация/task2019/task2019.iml" />
+      <module fileurl="file://$PROJECT_DIR$/10 Сериализация/task2021/task2021.iml" filepath="$PROJECT_DIR$/10 Сериализация/task2021/task2021.iml" />
     </modules>
   </component>
 </project>
