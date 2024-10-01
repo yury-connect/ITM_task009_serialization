@@ -17,11 +17,15 @@ Requirements:
 4. Класс Human должен поддерживать интерфейс Serializable.*/
 
 public class Solution {
-    public static class Human {
+    public static class Human implements Serializable {  // Реализуем интерфейс Serializable
+
+        private static final long serialVersionUID = 1L; // Рекомендуется добавить serialVersionUID
+
         public String name;
         public List<String> assets = new ArrayList<>();
 
         public Human() {
+            // для десериализации должен быть конструктор без параметров
         }
 
         public Human(String name, String... assets) {
