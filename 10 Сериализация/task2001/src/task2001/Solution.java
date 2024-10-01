@@ -111,7 +111,7 @@ public class Solution {
         public void load(InputStream inputStream) throws Exception {
             //implement this method - реализуйте этот метод // РЕШЕНИЕ РЕАЛИЗОВАНО В ДАННОМ МЕТОДЕ
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-            name = reader.readLine(); // Считываем имя
+            this.name = reader.readLine(); // Считываем имя
             int assetCount = Integer.parseInt(reader.readLine()); // Считываем количество активов
             assets.clear();
             for (int i = 0; i < assetCount; i++) {
