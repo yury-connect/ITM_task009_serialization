@@ -18,7 +18,7 @@ Requirements:
 8. Класс C не должен явно поддерживать интерфейс Serializable.*/
 
 public class Solution {
-    public class A {
+    public class A implements Serializable { // Класс A теперь поддерживает интерфейс Serializable.
         String name = "A";
 
         public A(String name) {
@@ -31,7 +31,7 @@ public class Solution {
         }
     }
 
-    public class B extends A {
+    public class B extends A { // Классы B и C не требуют явной реализации Serializable, так как они являются потомками класса A.
         String name = "B";
 
         public B(String name) {
