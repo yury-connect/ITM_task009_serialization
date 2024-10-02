@@ -1,9 +1,6 @@
 package task2011;
 
-import java.io.Externalizable;
-import java.io.IOException;
-import java.io.ObjectInput;
-import java.io.ObjectOutput;
+import java.io.*;
 
 /* 
 Externalizable для апартаментов
@@ -20,8 +17,9 @@ Requirements:
 7. Метод readExternal должен корректно восстанавливать из ObjectInput значение поля year.*/
 
 public class Solution {
+    private static final String FULL_FILE_NAME = System.getProperty("user.dir") + "/10 Сериализация/task2011/task2011_OBJ.ser";
 
-    public static class Apartment {
+    public static class Apartment implements Externalizable {
 
         private String address;
         private int year;
@@ -44,9 +42,44 @@ public class Solution {
         public String toString() {
             return ("Address: " + address + "\n" + "Year: " + year);
         }
+
+        @Override
+        public void writeExternal(ObjectOutput outObj) throws IOException {
+            outObj.writeObject(address);
+            outObj.writeInt(year);
+        }
+
+        @Override
+        public void readExternal(ObjectInput inObj) throws IOException, ClassNotFoundException {
+            this.address = inObj.readObject().toString();
+            this.year = inObj.readInt();
+        }
     }
 
     public static void main(String[] args) {
+        System.out.println("\n\tРаботаю с файлом: " + FULL_FILE_NAME);
+        Apartment srcObj = new Apartment("London", 2011);
+        System.out.println("\n\tСериализуемый объект:\n" + srcObj);
+        try {
+            java.io.ObjectOutputStream outObj = new java.io.ObjectOutputStream(new java.io.FileOutputStream(FULL_FILE_NAME));
+            outObj.writeObject(srcObj);
+            outObj.close();
+        } catch (java.io.IOException e) {
+            e.printStackTrace();
+        }
 
+        Apartment dstObj;
+        try {
+            java.io.ObjectInputStream in = new java.io.ObjectInputStream(new java.io.FileInputStream(FULL_FILE_NAME));
+            dstObj = (Apartment) in.readObject();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        System.out.println("\n\tДесериализованный объект:\n" + dstObj);
     }
 }
