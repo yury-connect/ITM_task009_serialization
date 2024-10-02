@@ -1,7 +1,6 @@
 package task2017;
 
-import java.io.ObjectInputStream;
-import java.io.Serializable;
+import java.io.*;
 
 /* 
 Десериализация
@@ -20,19 +19,73 @@ Requirements:
 
 public class Solution {
     public A getOriginalObject(ObjectInputStream objectStream) {
+        try {
+            Object object = objectStream.readObject();
+
+            // Проверка, является ли объект экземпляром A
+            if (object.getClass().equals(A.class)) { // Если объект является экземпляром A
+                return (A) object; // вернем этот объект
+            } else {
+                return null;
+            }
+
+        } catch (IOException | ClassNotFoundException e) { // любые ошибки во время десериализации (например, IOException или ClassNotFoundException) приводят к выводу сообщения и возвращению null.
+            System.out.println("Возникла непредвиденная ошибка.\nСообщение об ошибке: " + e.getMessage() + "\nВывожу стэктрэйс: \n" + e.getStackTrace());
+        }
         return null;
     }
 
-    public class A {
+    public static class A implements Serializable {
     }
 
-    public class B extends A {
+    public static class B extends A {
         public B() {
             System.out.println("inside B");
         }
     }
 
-    public static void main(String[] args) {
 
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+
+        // Тестирование сериализации и десериализации класса A
+        try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+             ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream)) {
+
+            // Создаем объект класса A и сериализуем его
+            A objectA = new A(); // изменим создание объектов A и B так, чтобы они не ссылались на объект внешнего класса Solution // По условию задачи Solution НЕ является Serializable
+            objectOutputStream.writeObject(objectA);
+
+            // Десериализуем объект класса A
+            try (ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteArrayOutputStream.toByteArray());
+                 ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream)) {
+
+                A deserializedObjectA = solution.getOriginalObject(objectInputStream);
+                System.out.println("Вывожу на печать десериализованный объект A: " + deserializedObjectA);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Тестирование сериализации и десериализации класса B
+        try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+             ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream)) {
+
+            // Создаем объект класса B и сериализуем его
+            B objectB = new B(); // изменим создание объектов A и B так, чтобы они не ссылались на объект внешнего класса Solution // По условию задачи Solution НЕ является Serializable
+            objectOutputStream.writeObject(objectB);
+
+            // Десериализуем объект класса B
+            try (ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteArrayOutputStream.toByteArray());
+                 ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream)) {
+
+                A deserializedObjectB = solution.getOriginalObject(objectInputStream);
+                System.out.println("Вывожу на печать десериализованный объект B: " + deserializedObjectB);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
