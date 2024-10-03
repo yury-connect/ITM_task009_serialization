@@ -47,9 +47,9 @@ public class Solution implements Serializable {
         return m;
     }
 
-    public void Solution() {
+    public Solution() { // Убрали из конструктора тип возвращаемого значения 'void' т.к. это не метод а конструктор!
         m.put("Mickey", "Mouse");
-        m.put("Mickey", "Mantle");
+        m.put("Mickey", "Mantle"); // вторая запись затирает первую, но это по условию задания не исправляем.
     }
 
     public int size() {
