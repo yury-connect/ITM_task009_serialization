@@ -40,15 +40,19 @@ public class Solution implements Serializable {
         // Пример проверки на сериализацию
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("subSolution.ser"))) {
             oos.writeObject(subSolution);
+        } catch (NotSerializableException e) {
+            System.out.println("Исключение: " + e.getMessage());  // Ловим исключение NotSerializableException
         } catch (IOException e) {
-            System.out.println("Исключение: " + e.getMessage());
+            e.printStackTrace();
         }
 
         // Пример проверки на десериализацию
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("subSolution.ser"))) {
             SubSolution deserializedSubSolution = (SubSolution) ois.readObject();
+        } catch (NotSerializableException e) {
+            System.out.println("Исключение: " + e.getMessage());  // Ловим исключение NotSerializableException
         } catch (IOException | ClassNotFoundException e) {
-            System.out.println("Исключение: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }
